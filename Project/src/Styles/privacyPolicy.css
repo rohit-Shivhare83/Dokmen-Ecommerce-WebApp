@@ -1,0 +1,65 @@
+.Privacy {
+  padding: 0 18%;
+  font-size: 15px;
+}
+.Privacy .text {
+  /* background-color: rgb(234, 241, 241); */
+  padding: 10px 20px;
+  
+}
+.Privacy .text h2{
+  text-align: center;
+}
+.privacy {
+  padding-top: 10px;
+}
+.privacy ol {
+  padding-left: 12px;
+}
+.privacy ol h5{
+  padding-top: 10px;
+}
+.privacy h5{
+  padding: 10px 0;
+}
+.privacy ol li{
+  padding: 10px 0px;
+}
+.privacy ol p{
+  text-align: justify;
+  font-size: 15px;
+}
+.privacy p{
+  text-align: justify;
+  font-size: 15px;
+}
+@media screen and (max-width:580px){
+  .privacy ol p{
+      font-size: 14px;
+  }
+  .privacy p{
+    font-size: 14px;
+}
+  .privacy ol li{
+    font-size: 14px;
+  }
+  .privacy ol h5{
+    font-size: 16px;
+  }
+  .privacy h5{
+    font-size: 16px;
+  }
+  .Privacy{
+      padding: 0 14%;
+  }
+  
+
+}
+@media screen and (max-width:415px){
+  
+  .Privacy{
+      padding: 0 0%;
+  }
+  
+
+}

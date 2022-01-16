@@ -1,0 +1,80 @@
+.happy-feet{
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-column-gap: 40px;
+    padding: 0px 40px 0px;
+    align-items: center;
+    justify-content: space-around;
+  
+  }
+  
+  .happy-feet .text{
+    text-align: center;
+    width: 600px;
+  }
+  
+  .happy-feet img{
+    height: 500px;
+  }
+  .text h2{
+    letter-spacing: 2px;
+  }
+  .text p{
+    margin-top: 30px !important;
+  line-height: 30px;
+    font-size: 18px;
+    color: gray;
+  }
+
+  @media screen and (max-width: 400px) {
+  
+
+    .happy-feet h2{
+      border:3px  !important;
+      border-color: #3f3f42 !important;
+      
+    }
+  
+    .happy-feet p{
+      margin-top: 20px !important;
+      font-size: 16px !important;
+    }
+    
+  }
+
+  @media screen and (max-width:600px) {
+  
+    .happy-feet .img{
+      height: 400px;
+    }
+  
+    .happy-feet p{
+      font-size: 16px !important;
+    }
+  
+  }
+
+  @media screen and (max-width:990px) {
+    .happy-feet{
+      grid-template-columns: auto !important;
+      text-align: center;
+  
+    }
+    .happy-feet .text{
+      width: auto !important;
+      margin-top: 20px;
+    }
+  }
+
+  @media screen and (max-width:1075px) {
+  
+    .happy-feet{
+      width: 100%;
+      justify-content: center !important;
+      
+    }
+      .happy-feet img{
+        height: 400px !important;
+      }
+    
+    }

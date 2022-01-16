@@ -1,0 +1,52 @@
+.Return{
+    padding: 0 18%;
+}
+
+.Return .text{
+    /* background-color: rgb(234, 241, 241); */
+    padding: 10px 10px;
+    
+}
+.return{
+    padding-top: 10px;
+}
+.text h2{
+    font-size: 20px;
+  
+}
+.return h3{
+    padding: 10px 0px;
+    font-size: 15px;
+
+}
+.return p{
+    text-align: justify;
+    font-size: 15px;
+    margin: 10px 0 !important;
+
+}
+.return p h6{
+    padding-top: 10px;
+    font-weight: bold;
+}
+@media screen and (max-width:580px){
+    .return p{
+        font-size: 13px;
+    }
+    .return p h6{
+        font-size: 13px;
+    }
+    .Return{
+        padding: 0 13%;
+    }
+    
+
+}
+@media screen and (max-width:400px){
+    
+    .Return{
+        padding: 0 5%;
+    }
+    
+
+}

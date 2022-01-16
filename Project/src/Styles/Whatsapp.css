@@ -1,0 +1,21 @@
+.whatsapp-container {
+    display: flex;
+    justify-content: center;
+    background-color: #032044;
+    color: white;
+  }
+  .w-text {
+    color: white;
+    font-size: 14px;
+    padding-bottom: 10px;
+    text-decoration: none !important;
+  }
+  .w-img {
+    height: 28px;
+    /* padding-top: 10px; */
+  }
+a{
+  text-decoration: none ;
+}
+
+  

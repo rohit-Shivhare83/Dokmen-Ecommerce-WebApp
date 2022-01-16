@@ -1,0 +1,66 @@
+.dokmen-icons{
+    display: flex;
+    text-align: center;
+    justify-content: space-around;
+    padding-top: 20px;
+  
+  }
+  
+  .dokmen-icons-1{
+    text-align: center;
+    margin: 10px 10%;
+    background-color: whitesmoke;
+    padding: 10px 0;
+    box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;          }
+  
+  .dokmen-icons-2{
+    text-align: center;
+    background-color: #E6E6E6;
+    margin: 20px 10%;
+    padding: 10px 0;
+  }
+  .dokmen-icons-3{
+    text-align: center;
+    background-color: whitesmoke;
+    margin: 10px 10%;
+    padding: 10px 0;
+    box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;   }
+
+  @media screen and (max-width:600px) {
+    .icons img{
+      height: 30px;
+    }
+     
+    .icons h6{
+      font-size: 14px !important;
+    }
+   
+    .icons p{
+      font-size: 12px;
+    }
+     
+   }
+   
+   @media screen and (max-width: 400px) {
+     .dokmen-icons-1 h3{
+       font-size: 16px !important;
+     }
+     .dokmen-icons-2 h3{
+       font-size: 16px !important;
+     }
+   .dokmen-icons-3 h3{
+     font-size: 16px !important;
+   }
+     .icons img{
+       height: 24px;
+     }
+      
+     .icons h6{
+       font-size: 10px !important;
+       padding-top: 6px;
+     }
+    
+     .icons p{
+       font-size: 8px;
+     }
+   }
