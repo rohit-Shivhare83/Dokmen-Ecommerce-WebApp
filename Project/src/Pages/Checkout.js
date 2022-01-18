@@ -37,6 +37,10 @@ export default function Checkout() {
       return;
     }
 
+    const verification = await fetch("/verification", {
+      method: "POST",
+    }).then((v) => v.json());
+
     const data = await fetch("/razorpay", {
       method: "POST",
       mode: "same-origin",
@@ -58,13 +62,12 @@ export default function Checkout() {
       image: "Images/Logo.png",
 
       handler: function (response) {
-        // alert(response.razorpay_payment_id);
-        // alert(response.razorpay_order_id);
-        // alert(response.razorpay_signature);
-
-        bootbox.alert(
-         "hello bro"
-        );
+        alert(response.razorpay_payment_id);
+        alert(response.razorpay_order_id);
+        alert(response.razorpay_signature);
+        alert(verification.staus);
+        alert(verification.staus1);
+        bootbox.alert("hello bro");
 
         // window.location = `https://api.whatsapp.com/send?phone=+917972328523&text=
         //   +Name :  +${formValues.firstName + formValues.lastName} +%0a
@@ -164,8 +167,7 @@ export default function Checkout() {
               aria-labelledby="flush-headingOne"
               data-bs-parent="#accordionFlushExample"
             >
-
-        {bootbox.alert('this is bootbox')}
+              {bootbox.alert("this is bootbox")}
               <div className="accordion-body">
                 {cart.map((item) => (
                   <>
