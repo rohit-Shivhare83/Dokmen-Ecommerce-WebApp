@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
 import "../Styles/Checkout.css";
 import { CartState } from "../Context/Context";
-import bootbox from "bootbox";
+import swal from 'sweetalert';
+
+
 
 async function loadScript(src) {
   return new Promise((resolve) => {
@@ -62,23 +64,28 @@ export default function Checkout() {
       image: "Images/Logo.png",
 
       handler: function (response) {
-        alert(response.razorpay_payment_id);
-        alert(response.razorpay_order_id);
-        alert(response.razorpay_signature);
-        alert(verification.status);
-        alert(verification.status1);
-        bootbox.alert("hello bro");
+        // swal(response.razorpay_payment_id);
+        // alert(response.razorpay_order_id);
+        // alert(response.razorpay_signature);
+        // alert(verification.status);
+        // alert(verification.status1);
+        swal({
+          title: "Payment SuccessFull",
+          text: `Your Order_Id is "${response.razorpay_order_id}"
+                Your PAyment_Id is "${response.razorpay_payment_id}" `,
+          icon: "success",
+        });
 
-        // window.location = `https://api.whatsapp.com/send?phone=+917972328523&text=
-        //   +Name :  +${formValues.firstName + formValues.lastName} +%0a
-        //   +Address :  +${formValues.address} +%0a
-        //   +City :  +${formValues.city} +%0a
-        //   +State :  +${formValues.state} +%0a
-        //   +Phone No :  +${formValues.phoneNo} +%0a
-        //   +PinCode :  +${formValues.pincode} +%0a
-        //   +Payment Id :  +${response.razorpay_payment_id} +%0a
-        //   +Razorpay Payment Id :  +${response.razorpay_order_id} +%0a
-        // `;
+        window.location = `https://api.whatsapp.com/send?phone=+917972328523&text=
+          +Name :  +${formValues.firstName + formValues.lastName} +%0a
+          +Address :  +${formValues.address} +%0a
+          +City :  +${formValues.city} +%0a
+          +State :  +${formValues.state} +%0a
+          +Phone No :  +${formValues.phoneNo} +%0a
+          +PinCode :  +${formValues.pincode} +%0a
+          +Payment Id :  +${response.razorpay_payment_id} +%0a
+          +Razorpay Payment Id :  +${response.razorpay_order_id} +%0a
+        `;
       },
       prefill: {
         name: formValues.firstName,
