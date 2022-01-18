@@ -65,8 +65,8 @@ export default function Checkout() {
         alert(response.razorpay_payment_id);
         alert(response.razorpay_order_id);
         alert(response.razorpay_signature);
-        alert(verification.staus);
-        alert(verification.staus1);
+        alert(verification.status);
+        alert(verification.status1);
         bootbox.alert("hello bro");
 
         // window.location = `https://api.whatsapp.com/send?phone=+917972328523&text=
