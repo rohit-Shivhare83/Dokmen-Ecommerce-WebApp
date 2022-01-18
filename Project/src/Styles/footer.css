@@ -29,7 +29,7 @@ ul{
 .footer{
     background-color: #032044;
     padding:70px 0;
-
+position: relative;
 }
 
 .footer-col{
@@ -148,6 +148,14 @@ ul{
     color: #24262b;
     background-color: #fff;
 } */
+
+.footer .icons-link{
+    position: absolute;
+    bottom: 8px;
+    left: 8px;
+    color: white;
+    font-size: 12px;
+}
 
 /* reaponsive */
 

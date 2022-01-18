@@ -11,19 +11,13 @@
 
 .dokmen-collection .container{
   display: grid !important;
-  grid-template-columns: auto auto auto;
+  grid-template-columns: auto auto auto !important;
   margin: 50px auto ;
   gap: 20px;
 }
 
 
-.dokmen-collection .container .container-items img{
 
-  height: 100% ;
-  width: 100%;
-  object-fit: cover;
- 
-}
 
 
 .dokmen-collection hr{
@@ -48,7 +42,7 @@
 }
   
   
-  @media screen and (max-width:520px) {
+  @media screen and (max-width:800px) {
     .dokmen-collection .container{
       display: grid !important;
       grid-template-columns: auto auto !important;

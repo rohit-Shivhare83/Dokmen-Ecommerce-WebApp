@@ -7,13 +7,20 @@ import Cart from "./Cart";
 import { CartState } from "../Context/Context";
 
 import { BiMenu } from "react-icons/bi";
+import ProductItems from "./ProductItems";
 
 export default function Navbar() {
   const [showSearch, setshowSearch] = useState(false);
-  const searchBar = () => setshowSearch(!showSearch);
+  const searchBar = () => {
+    setshowSearch(!showSearch);
+    setSearchTerm("");
+  };
 
   const [showCart, setshowCart] = useState(false);
   const cartBar = () => setshowCart(!showCart);
+
+  const [searchTerm, setSearchTerm] = useState("");
+  const [searchResults, setSearchResults] = useState([]);
 
   function closeMenu() {
     const toggle = document.getElementById("togglerTrigger");
@@ -21,9 +28,33 @@ export default function Navbar() {
   }
 
   const {
-    state: { cart },
-    productDispatch
+    state: { cart, products },
+    productDispatch,
   } = CartState();
+
+  const transformProducts = () => {
+    // let sortedProducts = products;
+    console.log(searchTerm);
+    // if(searchTerm){
+    //   sortedProducts= sortedProducts.filter((prod)=>prod.title.toLowercase().includes(searchTerm));
+    // }
+    // return sortedProducts;
+  };
+
+  const getSearhTerm = (search) => {
+    setSearchTerm(search.target.value);
+    if (searchTerm !== "") {
+      const sortedProducts = products.filter((product) => {
+        return Object.values(product)
+          .join(" ")
+          .toLowerCase()
+          .includes(searchTerm);
+      });
+      // console.log(sortedProducts);
+      setSearchResults(sortedProducts);
+      console.log(searchResults);
+    } 
+  };
 
   return (
     <>
@@ -171,9 +202,11 @@ export default function Navbar() {
                 <button onClick={cartBar}>
                   <BsHandbag className="menu-items-img" alt="bag" id="bag" />
                   <span className="icon-title">BAG</span>
-                  <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill" style={{backgroundColor:'black'}}>
+                  <span
+                    className="position-absolute top-0 start-100 translate-middle badge rounded-pill"
+                    style={{ backgroundColor: "black" }}
+                  >
                     {cart.length}
-                    
                   </span>
                 </button>
               </li>
@@ -181,15 +214,42 @@ export default function Navbar() {
           </nav>
         </div>
 
-        <div className="search" style={{ top: showSearch ? "106px" : "0" }}>
+        <div
+          className="search"
+          style={{
+            transform: showSearch ? "translateY(0)" : "translateY(-120%)",
+          }}
+        >
           <form action="" className="search-form">
-            <input type="text" name="" id="" placeholder="Search..." onChange={(e)=>{
-              productDispatch({
-                type:'FILTER_BY_SEARCH',
-                payload:e.target.value
-              })
-            }} />
+            <input
+              type="text"
+              name="search"
+              value={searchTerm}
+              id="search"
+              placeholder="Search..."
+              onChange={getSearhTerm}
+            />
           </form>
+        </div>
+
+        <div
+          className="search-container"
+          style={{ display: searchTerm  ? "block" : "none" }}
+        >
+          <div className="search-items">
+            {
+           
+            searchResults.map((item) => {
+              return (
+                <ProductItems
+                  key={item.title}
+                  title={item.title}
+                  imgUrl={item.image}
+                  price={item.price}
+                />
+              );
+            })}
+          </div>
         </div>
       </header>
       <Cart showCart={showCart} />

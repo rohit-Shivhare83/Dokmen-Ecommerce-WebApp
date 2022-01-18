@@ -37,9 +37,9 @@ export default function Products() {
       );
     }
 
-    if(searchQuery){
-      sortedProducts = sortedProducts.filter((prod)=>prod.title.toLowercase().includes(searchQuery))
-    }
+    // if(searchQuery){
+    //   sortedProducts =  sortedProducts.filter((prod)=>prod.title.toLowercase().includes(searchQuery))
+    // }
     return sortedProducts;
   };
 
@@ -202,7 +202,9 @@ export default function Products() {
       </div>
 
       <div className="product-container">
-        {products.map((item) => {
+        {
+      
+        transformProducts().map((item) => {
           return (
             <ProductItems
               key={item.id}

@@ -14,7 +14,7 @@ export default function ProductItems(props) {
   
 
   return (
-    <div className="product-items">
+    <div className="product-items" key={props.title}>
       <div className="container-items">
         <img src={props.imgUrl} alt="img" />
         <div className="items-details">
@@ -26,7 +26,7 @@ export default function ProductItems(props) {
       </div>
       <div className="cart-btn">
         {
-          cart.some((p)=>p.id===props.id)?(
+          cart.some((p)=>p.title===props.title)?(
             <button  onClick={()=>{
               dispatch({
                 type:'REMOVE_FROM_CART',

@@ -32,7 +32,7 @@ export default function Cart(props) {
         {cart.length > 0 ? (
           <>
             {cart.map((item) => (
-              <div className="cart-item" key={item.id}>
+              <div className="cart-item" key={item.title}>
                 <img src={item.imgUrl} alt={item.title} />
 
                 <div className="cart-item-details">
@@ -47,7 +47,7 @@ export default function Cart(props) {
                           dispatch({
                             type: "CHANGE_CART_QTY",
                             payload: {
-                              id: item.id,
+                              id: item.title,
                               qty: item.qty - 1,
                             },
                           })
@@ -59,7 +59,7 @@ export default function Cart(props) {
                           dispatch({
                             type: "CHANGE_CART_QTY",
                             payload: {
-                              id: item.id,
+                              id: item.title,
                               qty: item.qty + 1,
                             },
                           })

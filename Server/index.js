@@ -4,31 +4,47 @@ const Razorpay = require("razorpay");
 const shortId = require("shortid");
 const path = require("path");
 const PORT = process.env.PORT || 3000;
-const { urlencoded } = require("express");
 const { json } = require("express");
 const express = require("express");
+const crypto = require('crypto');
+const bodyParser = require("body-parser");
 
-// const productData = require('./db.json')
-
+app.use(bodyParser.json())
 app.use(cors());
-// app.use(urlencoded());
 app.use(json())
 app.use(express.static(path.join(__dirname,"../Project/build")));
-// app.get("/about", (req, res) => {
-//   res.sendFile(path.join(__dirname, "db.json"));
-// });
+
 app.get("*", (req, res) => {
   res.sendFile(path.resolve(__dirname, "../Project/build", "index.html"));
 });
-// app.get('/api',function(req,res){
-//   console.log('total value is :',req.body.post);
-// //  price =req.body.total;
-//  res.send(`${req.body.post}`)
-// })
+
 
 const razorpay = new Razorpay({
   key_id: "rzp_test_VsCdgSHQjnyYP9",
   key_secret: "MJAKG3pH8qx5OQ8KzIVdvTkQ",
+});
+
+app.post("/verification", (req, res) => {
+  
+  const secret = '1234567890'
+
+  console.log(req.body);
+
+  const shasum = crypto.createHmac('sha256', secret)
+	shasum.update(JSON.stringify(req.body))
+	const digest = shasum.digest('hex')
+
+	console.log(digest, req.headers['x-razorpay-signature'])
+
+	if (digest === req.headers['x-razorpay-signature']) {
+		console.log('request is legit')
+		// process it
+		res.json({ status : 'ok'});
+	} else {
+		// pass it
+    res.json({ status1 : 'failed'})
+	}
+  
 });
 
 app.post("/razorpay", async (req, res) => {
@@ -61,6 +77,8 @@ app.post("/razorpay", async (req, res) => {
 
   // res.send(res.json);
 });
+
+
 
 app.listen(PORT, () => {
   console.log(`listening to ${PORT}`);

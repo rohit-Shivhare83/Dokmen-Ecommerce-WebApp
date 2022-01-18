@@ -1,5 +1,6 @@
 import React from 'react'
 import "../Styles/dokmen-icons.css"
+import { FaSocks } from "react-icons/fa";
 
 export default function Dokmenicons() {
     return (

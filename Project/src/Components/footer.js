@@ -47,11 +47,14 @@ const Footer = () => {
                                 <li><Link to="/returnpolicy">Returns Policy</Link></li>
                                 <li><Link to="/privacypolicy">Privacy Policy</Link></li>
                                 <li><a href="/">Cookie Policy</a></li>
-                                <li><a href="/">Terms & Conditions</a></li>
+                                <li><Link to="/terms&condition">Terms & Conditions</Link></li>
 
                             </ul>
                         </div>
                     </div>
+                </div>
+                <div className="icons-link">
+                    <span>Icons By <a href="https://icons8.com/" target='_blank'>Icons8</a></span>
                 </div>
             </footer>
         </div>

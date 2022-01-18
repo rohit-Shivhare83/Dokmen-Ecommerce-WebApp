@@ -1,42 +1,41 @@
 import React from 'react';
 import "../Styles/dokmen-collection.css";
 import { Link } from 'react-router-dom';
+import { CartState } from '../Context/Context';
+import data from '../collection.json'
+import ProductItems from './ProductItems';
 
 export default function Dokmencollection() {
+
+   const {
+      state:{products}
+   }=CartState();
+
+   const random = products[Math.floor(Math.random()*products.length)];
+   console.log(random);
+
     return (
         <div className="dokmen-collection">
         <h2 className="collection-txt">Dokmen Top selling</h2>
 
         <div className="container">
-         <div className="container-items">
-
-            <img src="Images/pic2.jpg" alt=""  />
-         </div>
          
-         <div className="container-items">
+            {
+data.map((item)=>{
+   return <ProductItems key={item.title} imgUrl={item.imageUrl} title={item.title} price={item.price}/>
+})
+            }
            
-            <img src="Images/pic3.jpg" alt=""   />
-         </div>
         
-         <div className="container-items">
-           
-            <img src="Images/pic5.jpg" alt=""  />
-           </div>
+     
+        
          
-           <div className="container-items">
-           
-            <img src="Images/Pic6.jpg" alt=""   />
-           </div>
-        
-           <div className="container-items">
-           
-            <img src="Images/pic4.jpg" alt=""  />
-           </div>
+         
           
-           <div className="container-items">
-           
-            <img src="Images/Pic1.jpg" alt=""   />
-           </div>
+        
+         
+          
+          
           
         </div>
 

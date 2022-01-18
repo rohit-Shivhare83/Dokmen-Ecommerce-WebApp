@@ -12,6 +12,7 @@ import Products from "./Pages/Products";
 import Checkout from "./Pages/Checkout";
 import Policy from "./Pages/privacyPolicy";
 import ReturnPolicy from "./Pages/ReturnPolicy";
+import TermsnCondition from "./Pages/TermsnCondition";
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
         <Route  path="/checkout" element={<Checkout />}></Route>
         <Route path="/privacypolicy" element={<Policy/>}></Route>
         <Route path="/returnpolicy" element={<ReturnPolicy/>}></Route>
+        <Route path="/terms&condition" element={<TermsnCondition/>}></Route>
 
       </Routes>
 

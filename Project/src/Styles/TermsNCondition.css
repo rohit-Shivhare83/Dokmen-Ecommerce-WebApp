@@ -1,0 +1,25 @@
+.tnc .container{
+    padding: 50px 10px;
+    width: 60% !important;
+    /* background-color: white; */
+    font-size: 15px;
+}
+
+.tnc .container h3{
+    text-align: center;
+    letter-spacing: 2px;
+    font-size: 20px;
+}
+
+.tnc .container p {
+    margin: 40px 0;
+}
+
+.tnc .container ol{
+    list-style-type:upper-roman ;
+}
+
+.tnc .container ol li{
+    margin: 10px 0;
+    font-size: 14px;
+}

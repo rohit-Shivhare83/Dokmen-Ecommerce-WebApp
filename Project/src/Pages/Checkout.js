@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "../Styles/Checkout.css";
 import { CartState } from "../Context/Context";
-// import axios from "axios";
+import bootbox from "bootbox";
 
 async function loadScript(src) {
   return new Promise((resolve) => {
@@ -28,10 +28,6 @@ export default function Checkout() {
     setTotal(cart.reduce((acc, curr) => acc + curr.price * curr.qty, 0));
   }, [cart]);
 
-  // axios
-  //   .post("http://localhost:3001/api", total)
-  //   .then(() => console.log("total value in checkoit is :", total));
-
   async function displayRazorPay() {
     const res = await loadScript(
       "https://checkout.razorpay.com/v1/checkout.js"
@@ -43,11 +39,12 @@ export default function Checkout() {
 
     const data = await fetch("/razorpay", {
       method: "POST",
-      mode : 'same-origin',
+      mode: "same-origin",
       headers: {
-        'Accept': 'application/json',
-        'Content-Type':'application/json'},
-      body: JSON.stringify({post: total}),
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ post: total }),
     }).then((value) => value.json());
     console.log(data);
 
@@ -61,9 +58,14 @@ export default function Checkout() {
       image: "Images/Logo.png",
 
       handler: function (response) {
-        alert(response.razorpay_payment_id);
-        alert(response.razorpay_order_id);
-        alert(response.razorpay_signature);
+        // alert(response.razorpay_payment_id);
+        // alert(response.razorpay_order_id);
+        // alert(response.razorpay_signature);
+
+        bootbox.alert(
+         "hello bro"
+        );
+
         // window.location = `https://api.whatsapp.com/send?phone=+917972328523&text=
         //   +Name :  +${formValues.firstName + formValues.lastName} +%0a
         //   +Address :  +${formValues.address} +%0a
@@ -110,7 +112,6 @@ export default function Checkout() {
     e.preventDefault();
     // setformError(validate(formValues));
     // setisSubmit(true);
-   
   };
 
   const validate = (values) => {
@@ -163,6 +164,8 @@ export default function Checkout() {
               aria-labelledby="flush-headingOne"
               data-bs-parent="#accordionFlushExample"
             >
+
+        {bootbox.alert('this is bootbox')}
               <div className="accordion-body">
                 {cart.map((item) => (
                   <>
@@ -211,6 +214,7 @@ export default function Checkout() {
                   onChange={handleChange}
                   name="phoneNo"
                 />
+
                 <p>{formError.phoneNo}</p>
               </div>
 
@@ -290,13 +294,7 @@ export default function Checkout() {
             <span className="submit-btn">
               <button>Continue to Shipping</button>
 
-              <button
-                onClick={
-                 displayRazorPay
-                }
-              >
-                Make Payment
-              </button>
+              <button onClick={displayRazorPay}>Make Payment</button>
             </span>
           </form>
         </div>
