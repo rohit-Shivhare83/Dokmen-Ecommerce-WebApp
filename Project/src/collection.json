@@ -5,36 +5,36 @@
         "title": "Class Formal - 01",
         "price": 199,
         "category": "Men",
-        "imageUrl": "/Images/Socks Images/Class Formal - 01.jpg"
+        "imageUrl": "/Images/Socks Images/Class Formal - 01.JPG"
     },
     {
         "title": "Sports Ankle - 01",
         "price": 150,
         "category": "Men",
-        "imageUrl": "/Images/Socks Images/Sports Ankle - 01.jpg"
+        "imageUrl": "/Images/Socks Images/Sports Ankle - 01.JPG"
     },
     {
         "title": "Matrix Ankle - 02",
         "price": 199,
         "category": "Men",
-        "imageUrl": "/Images/Socks Images/Matrix Ankle - 02.jpg"
+        "imageUrl": "/Images/Socks Images/Matrix Ankle - 02.JPG"
     },
     {
         "title": "Go Pro - 01",
         "price": 199,
         "category": "Women",
-        "imageUrl": "/Images/Socks Images/Go Pro Socks - 01.jpg"
+        "imageUrl": "/Images/Socks Images/Go Pro Socks - 01.JPG"
     },
     {
         "title": "Orion Socks - 08",
         "price": 180,
         "category": "Women",
-        "imageUrl": "/Images/Socks Images/Unicorn Socks - 05.jpg"
+        "imageUrl": "/Images/Socks Images/Unicorn Socks - 05.JPG"
     },
     {
         "title": "Unicorn Socks - 01",
         "price": 180,
         "category": "Women",
-        "imageUrl": "/Images/Socks Images/Unicorn Socks - 01.jpg"
+        "imageUrl": "/Images/Socks Images/Unicorn Socks - 01.JPG"
     }
 ]
