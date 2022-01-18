@@ -167,7 +167,7 @@ export default function Checkout() {
               aria-labelledby="flush-headingOne"
               data-bs-parent="#accordionFlushExample"
             >
-              {bootbox.alert("this is bootbox")}
+              
               <div className="accordion-body">
                 {cart.map((item) => (
                   <>
