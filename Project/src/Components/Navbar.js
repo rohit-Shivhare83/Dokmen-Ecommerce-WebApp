@@ -1,6 +1,7 @@
 import { React, useState } from "react";
 import "../Styles/Navbar.css";
 import "../Styles/Whatsapp.css";
+// import Products from "../Pages/Products";
 import { Link } from "react-router-dom";
 import { BsHandbag, BsSearch } from "react-icons/bs";
 import Cart from "./Cart";
@@ -26,9 +27,15 @@ export default function Navbar() {
     const toggle = document.getElementById("togglerTrigger");
     toggle.checked = false;
   }
+  // const {
+  //   state: { products },
+  //   productState: { category },
+  //   productDispatch,
+  // } = CartState();
 
   const {
     state: { cart, products },
+    // productState: { category },
     productDispatch,
   } = CartState();
 
@@ -53,7 +60,7 @@ export default function Navbar() {
       // console.log(sortedProducts);
       setSearchResults(sortedProducts);
       console.log(searchResults);
-    } 
+    }
   };
 
   return (
@@ -94,17 +101,21 @@ export default function Navbar() {
                 <Link to="/">SHOP</Link>
                 <ul>
                   <li>
-                    <Link to="#" onClick={closeMenu}>
+                    <Link to="/products" onClick={closeMenu}>
                       ALL
                     </Link>
+                    
                   </li>
                   <li>
-                    <Link to="#" onClick={closeMenu}>
+                    <>
+                    
+                    <Link to="/products" onClick={closeMenu}>
                       MEN
                     </Link>
+                    </>
                   </li>
                   <li>
-                    <Link to="#" onClick={closeMenu}>
+                    <Link to="/products" onClick={closeMenu}>
                       WOMEN
                     </Link>
                   </li>
@@ -234,12 +245,10 @@ export default function Navbar() {
 
         <div
           className="search-container"
-          style={{ display: searchTerm  ? "block" : "none" }}
+          style={{ display: searchTerm ? "block" : "none" }}
         >
           <div className="search-items">
-            {
-           
-            searchResults.map((item) => {
+            {searchResults.map((item) => {
               return (
                 <ProductItems
                   key={item.title}

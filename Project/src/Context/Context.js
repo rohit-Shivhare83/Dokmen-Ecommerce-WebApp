@@ -18,7 +18,7 @@ const Context = ({ children }) => {
   });
 
   const [productState, productDispatch] = useReducer(productReducer, {
-    searchQuery: "",
+    
   });
 
   return (

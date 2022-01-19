@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "../Styles/Checkout.css";
 import { CartState } from "../Context/Context";
-import swal from 'sweetalert';
-
-
+import swal from "sweetalert";
 
 async function loadScript(src) {
   return new Promise((resolve) => {
@@ -64,28 +62,28 @@ export default function Checkout() {
       image: "Images/Logo.png",
 
       handler: function (response) {
-        // swal(response.razorpay_payment_id);
+        // alert(response.razorpay_payment_id);
         // alert(response.razorpay_order_id);
         // alert(response.razorpay_signature);
-        // alert(verification.status);
-        // alert(verification.status1);
+        alert(verification.staus);
+        // alert(verification.staus1);
         swal({
           title: "Payment SuccessFull",
           text: `Your Order_Id is "${response.razorpay_order_id}"
                 Your PAyment_Id is "${response.razorpay_payment_id}" `,
           icon: "success",
         });
-
-        window.location = `https://api.whatsapp.com/send?phone=+917972328523&text=
-          +Name :  +${formValues.firstName + formValues.lastName} +%0a
-          +Address :  +${formValues.address} +%0a
-          +City :  +${formValues.city} +%0a
-          +State :  +${formValues.state} +%0a
-          +Phone No :  +${formValues.phoneNo} +%0a
-          +PinCode :  +${formValues.pincode} +%0a
-          +Payment Id :  +${response.razorpay_payment_id} +%0a
-          +Razorpay Payment Id :  +${response.razorpay_order_id} +%0a
-        `;
+        // window.location = `https://api.whatsapp.com/send?phone=+917972328523&text=
+        //   +Name :  +${formValues.firstName + formValues.lastName} +%0a
+        //   +Address :  +${formValues.address} +%0a
+        //   +City :  +${formValues.city} +%0a
+        //   +State :  +${formValues.state} +%0a
+        //   +Phone No :  +${formValues.phoneNo} +%0a
+        //   +PinCode :  +${formValues.pincode} +%0a
+        //   +Payment Id :  +${response.razorpay_payment_id} +%0a
+        //   +Razorpay Payment Id :  +${response.razorpay_order_id} +%0a
+        //   +Order:
+        // `;
       },
       prefill: {
         name: formValues.firstName,
@@ -114,15 +112,20 @@ export default function Checkout() {
   const handleChange = (e) => {
     const { name, value } = e.target;
     setformValues({ ...formValues, [name]: value });
-    console.log(formValues);
+    // console.log(formValues);
   };
 
   const handleSubmit = (e) => {
     // console.log(isSubmit);
     e.preventDefault();
-    // setformError(validate(formValues));
-    // setisSubmit(true);
+    setformError(validate(formValues));
+    setisSubmit(true);
   };
+  useEffect(() => {
+    if (Object.keys(formError).length === 0 && isSubmit) {
+      displayRazorPay();
+    }
+  }, [formError]);
 
   const validate = (values) => {
     const errors = {};
@@ -148,8 +151,12 @@ export default function Checkout() {
     if (!values.pincode) {
       errors.pincode = "Pin Code is Required";
     }
+
     return errors;
   };
+
+  // const errorJson = JSON.stringify(formError)
+  // console.log(errorJson);
 
   return (
     <section>
@@ -174,7 +181,7 @@ export default function Checkout() {
               aria-labelledby="flush-headingOne"
               data-bs-parent="#accordionFlushExample"
             >
-              
+              {/* {bootbox.alert("this is bootbox")} */}
               <div className="accordion-body">
                 {cart.map((item) => (
                   <>
@@ -301,9 +308,7 @@ export default function Checkout() {
             </div>
 
             <span className="submit-btn">
-              <button>Continue to Shipping</button>
-
-              <button onClick={displayRazorPay}>Make Payment</button>
+              <button onClick={handleSubmit}>Make Payment</button>
             </span>
           </form>
         </div>
@@ -314,11 +319,20 @@ export default function Checkout() {
           <>
             <div className="product-details">
               <div>
-                <img src={item.imgUrl} alt="" height="80px" width="80px" />
+                <span style={{ position: "relative" }}>
+                  <img src={item.imgUrl} alt="" height="80px" width="80px" />
+                  <span
+                    className="position-absolute top-0 start-100 translate-middle badge rounded-pill"
+                    style={{ backgroundColor: "black" }}
+                  >
+                    {item.qty}
+                  </span>
+                </span>
+
                 {item.title}
               </div>
 
-              <div className="item-price">Rs {item.price}</div>
+              <div className="item-price">Rs {item.price * item.qty}</div>
             </div>
           </>
         ))}

@@ -16,13 +16,14 @@
 
 
 .checkout-btn{
-height: 8%;
+height: 10%;
+
 }
 .cart-title h3{
   margin: 0;
 }
 .cart-body{
-    height: 84%;
+    height: 80%;
     overflow-y: scroll;
     margin: 10px 0;
 }
@@ -53,6 +54,7 @@ height: 8%;
   background-color: #032044;   
 border-radius: 6px;
   color: white;
+  
 }
 
 .item-btn{
@@ -69,6 +71,10 @@ border-radius: 6px;
 .qty-title{
   color: gray;
   font-size: 14px;
+}
+.cart .total-price{
+  font-weight: bold;
+  font-size: 20px;
 }
 
 

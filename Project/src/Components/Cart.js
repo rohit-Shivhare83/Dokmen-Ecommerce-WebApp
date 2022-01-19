@@ -87,13 +87,18 @@ export default function Cart(props) {
           <p>No items in your cart</p>
         )}
       </div>
+      <div className="total-price">
+        <span>
+          Total Price : {total}
+        </span>
+      </div>
       <div className="checkout-btn">
 
         {
           total === 0?
-          <button disabled='true'>CHECKOUT</button>:
+          <button disabled='true' >CHECKOUT</button>:
           <Link to="/checkout"  >
-          <button >CHECKOUT</button>
+          <button onClick={()=>props.showCart = !props.showCart}>CHECKOUT</button>
           </Link>
         }
         
