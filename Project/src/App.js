@@ -13,8 +13,10 @@ import Checkout from "./Pages/Checkout";
 import Policy from "./Pages/privacyPolicy";
 import ReturnPolicy from "./Pages/ReturnPolicy";
 import TermsnCondition from "./Pages/TermsnCondition";
+import { useState } from "react";
 
 function App() {
+
   return (
     <>
     <Router>
@@ -25,7 +27,7 @@ function App() {
         <Route path="" element={<Home />}></Route>
         <Route path="/journey" element={<TheJourney />}></Route>
         <Route path="/contactus" element={<ContactUs />}></Route>
-        <Route path="/products" element={<Products />}></Route>
+        <Route path="/products" element={<Products  />}></Route>
         <Route  path="/checkout" element={<Checkout />}></Route>
         <Route path="/privacypolicy" element={<Policy/>}></Route>
         <Route path="/returnpolicy" element={<ReturnPolicy/>}></Route>

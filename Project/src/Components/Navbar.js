@@ -41,7 +41,7 @@ export default function Navbar() {
         return Object.values(product)
           .join(" ")
           .toLowerCase()
-          .includes(searchTerm);
+          .includes(searchTerm.toLowerCase());
       });
       setSearchResults(sortedProducts);
     } 
@@ -82,20 +82,37 @@ export default function Navbar() {
                 </Link>
               </li>
               <li>
-                <Link to="/">SHOP</Link>
+                <a  >SHOP</a>
                 <ul>
                   <li>
-                    <Link to="#" onClick={closeMenu}>
+                    <Link to="/products" onClick={()=>{closeMenu();
+                    productDispatch({
+                      type: "FILTER_BY_CATEGORY",
+                      payload: "all",
+                    })}}>
                       ALL
                     </Link>
                   </li>
                   <li>
-                    <Link to="#" onClick={closeMenu}>
+                    <Link to="/products"  onClick={()=>{
+                      
+                      closeMenu();
+                      productDispatch({
+                        type: "FILTER_BY_CATEGORY",
+                        payload: "men",
+                      })
+                    }
+                      }>
                       MEN
                     </Link>
                   </li>
                   <li>
-                    <Link to="#" onClick={closeMenu}>
+                    <Link to="/products"  onClick={()=>{closeMenu();
+                    productDispatch({
+                      type: "FILTER_BY_CATEGORY",
+                      payload: "women",
+                    })
+                    }}>
                       WOMEN
                     </Link>
                   </li>

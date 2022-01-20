@@ -32,7 +32,7 @@ export default function ProductItems(props) {
                 type:'REMOVE_FROM_CART',
                 payload:props
               })
-            }} >
+            }} style={{backgroundColor:"#032044"}}>
             REMOVE FROM CART
           </button>
           ):(

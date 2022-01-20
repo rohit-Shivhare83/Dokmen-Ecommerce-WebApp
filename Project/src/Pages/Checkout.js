@@ -22,6 +22,16 @@ export default function Checkout() {
     state: { cart },
   } = CartState();
 
+  const orderDetails=()=>{
+    cart.map((item)=>{
+      return {
+        "Product :" : item.title,
+        "Price : ":item.price,
+        "Quantity :" : item.qty,
+      }
+    })
+  }
+
   const [total, setTotal] = useState();
 
   useEffect(() => {
@@ -68,7 +78,7 @@ export default function Checkout() {
         alert(verification.status);
         // alert(verification.staus1);
 
-        if (verification.status == "ok") {
+        if (verification.status === "ok") {
           swal({
             title: "Payment SuccessFull",
             text: `Your Order_Id is "${response.razorpay_order_id}"
@@ -76,17 +86,23 @@ export default function Checkout() {
             icon: "success",
           });
         }
-        // window.location = `https://api.whatsapp.com/send?phone=+917972328523&text=
-        //   +Name :  +${formValues.firstName + formValues.lastName} +%0a
-        //   +Address :  +${formValues.address} +%0a
-        //   +City :  +${formValues.city} +%0a
-        //   +State :  +${formValues.state} +%0a
-        //   +Phone No :  +${formValues.phoneNo} +%0a
-        //   +PinCode :  +${formValues.pincode} +%0a
-        //   +Payment Id :  +${response.razorpay_payment_id} +%0a
-        //   +Razorpay Payment Id :  +${response.razorpay_order_id} +%0a
-        //   +Order:
-        // `;
+
+        setInterval(() => {
+          window.location = `https://api.whatsapp.com/send?phone=+917972328523&text=
+          +Name :  +${formValues.firstName + formValues.lastName} +%0a
+          +Address :  +${formValues.address} +%0a
+          +City :  +${formValues.city} +%0a
+          +State :  +${formValues.state} +%0a
+          +Phone No :  +${formValues.phoneNo} +%0a
+          +PinCode :  +${formValues.pincode} +%0a
+          +Payment Id :  +${response.razorpay_payment_id} +%0a
+          +Razorpay Payment Id :  +${response.razorpay_order_id} +%0a
+          +Order: +${orderDetails()} +%0a
+          +Total : +${total}
+        `;
+          
+        }, 5000);
+        
       },
       prefill: {
         name: formValues.firstName,
@@ -199,22 +215,32 @@ export default function Checkout() {
               aria-labelledby="flush-headingOne"
               data-bs-parent="#accordionFlushExample"
             >
-              {/* {bootbox.alert("this is bootbox")} */}
+              
               <div className="accordion-body">
                 {cart.map((item) => (
                   <>
                     <div className="product-details" key={item.id}>
                       <div>
+
+                        <span style={{position:"relative"}}>
+
                         <img
                           src={item.imgUrl}
                           alt=""
                           height="80px"
                           width="80px"
-                        />
+                          />
+                          <span
+                    className="position-absolute top-0 start-100 translate-middle badge rounded-pill"
+                    style={{ backgroundColor: "black" }}
+                  >
+                    {item.qty}
+                  </span>
+                          </span>
                         {item.title}
                       </div>
 
-                      <div className="item-price">Rs {item.price}</div>
+                      <div className="item-price">Rs {item.price*item.qty}</div>
                     </div>
                   </>
                 ))}
@@ -222,11 +248,11 @@ export default function Checkout() {
                 <div className="price-details">
                   <div className="price-title">
                     <p>Total</p>
-                    <p>Shipping</p>
+                    {/* <p>Shipping</p> */}
                   </div>
                   <div className="price">
                     <p>{total}</p>
-                    <p>Free</p>
+                    {/* <p>Free</p> */}
                   </div>
                 </div>
               </div>
@@ -358,11 +384,11 @@ export default function Checkout() {
         <div className="price-details">
           <div className="price-title">
             <p>Total</p>
-            <p>Shipping</p>
+            
           </div>
           <div className="price">
             <p>{total}</p>
-            <p>Free</p>
+            
           </div>
         </div>
       </div>

@@ -54,7 +54,7 @@ const Footer = () => {
                     </div>
                 </div>
                 <div className="icons-link">
-                    <span>Icons By <a href="https://icons8.com/" target='_blank'>Icons8</a></span>
+                    <span>Icons By <a href="https://icons8.com/" target='_blank' rel='noreferrer'>Icons8</a></span>
                 </div>
             </footer>
         </div>

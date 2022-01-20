@@ -150,6 +150,7 @@ section {
     width: 100%;
     align-items: center;
     margin-bottom: 60px;
+    height: 100%;
 
   }
 
@@ -159,6 +160,11 @@ section {
 
   .accordion {
     display: block;
+    margin-top: 0;
+  }
+
+  .accordion-button .accordion-collapse.collapse.show { 
+    margin-top: 50vh !important;
   }
 }
 

@@ -6,11 +6,14 @@ import ProductItems from "../Components/ProductItems";
 import { CartState } from "../Context/Context";
 
 export default function Products() {
+
   const {
     state: { products },
     productState: { sort, category },
     productDispatch,
   } = CartState();
+
+  // category = props.category
 
 
   const [showSort, setshowSort] = useState(false);
@@ -22,8 +25,14 @@ export default function Products() {
   const filterProducts = () => {
     let filteredProducts = products;
 
+    // if(props.category === "men"){
+    //   filteredProducts = filteredProducts.filter((i) => {
+    //     return i.category === "Men";
+    //   });
+    // }
+
     if (category) {
-      if (category === "men") {
+      if (category === "men")  {
         filteredProducts = filteredProducts.filter((i) => {
           return i.category === "Men";
         });
@@ -285,10 +294,10 @@ export default function Products() {
             onChange={() =>
               productDispatch({
                 type: "FILTER_BY_CATEGORY",
-                payload: "men",
+                payload: "men" 
               })
             }
-            checked={category === "men" ? true : false}
+            checked={category ==="men" ? true : false}
           />
           <label htmlFor="men">Men</label>
           <br />
@@ -300,10 +309,10 @@ export default function Products() {
             onChange={() =>
               productDispatch({
                 type: "FILTER_BY_CATEGORY",
-                payload: "women",
+                payload: "women" 
               })
             }
-            checked={category === "women" ? true : false}
+            checked={category ==="women"? true : false}
           />
           <label htmlFor="women">Women</label>
         </div>
