@@ -78,7 +78,7 @@ export default function Checkout() {
         alert(verification.status);
         // alert(verification.staus1);
 
-        if (verification.status === "ok") {
+        if (verification.status === 'ok') {
           swal({
             title: "Payment SuccessFull",
             text: `Your Order_Id is "${response.razorpay_order_id}"
@@ -86,6 +86,7 @@ export default function Checkout() {
             icon: "success",
           });
         }
+        console.log(verification.status);
 
         setInterval(() => {
           window.location = `https://api.whatsapp.com/send?phone=+917972328523&text=
