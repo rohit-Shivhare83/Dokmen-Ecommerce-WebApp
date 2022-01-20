@@ -1,6 +1,9 @@
 .dokmen-collection{
   margin: 50px 0px;
-  
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
 }
 .collection-txt{
   text-align: center;
@@ -9,11 +12,14 @@
   letter-spacing: 2px;
 }
 
-.dokmen-collection .container{
-  display: grid !important;
+.dokmen-collection .product-container{
+  position: static;
+  display: grid ;
   grid-template-columns: auto auto auto !important;
-  margin: 50px auto ;
+  margin: 50px 5%  ;
   gap: 20px;
+  overflow: hidden;
+  width: 90%;
 }
 
 
@@ -40,14 +46,20 @@
   text-transform: uppercase;
   /* margin-top:10px ; */
 }
+
+@media screen and (max-width:1000px) {
+  .dokmen-collection .product-container{
+    display: grid !important;
+    grid-template-columns: auto auto !important;
+  gap: 10px;
+  width: 90%;
+
+  }
+}
   
   
   @media screen and (max-width:800px) {
-    .dokmen-collection .container{
-      display: grid !important;
-      grid-template-columns: auto auto !important;
-    gap: 10px;
-    }
+    
 
 
    
@@ -66,4 +78,10 @@
     
   }
   
+
+  @media screen and (max-width:700px) {
+    .dokmen-collection .product-container{
+      width: 100%;
+    }
+  }
   

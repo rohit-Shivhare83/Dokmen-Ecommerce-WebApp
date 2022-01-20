@@ -306,9 +306,15 @@ border: 2px solid #032044;
     color: white;
     font-size: 14px;
   }
+
+  .search-items{
+    grid-template-columns: auto auto auto;
+  }
 }
-@media screen and (max-width:1000px) {
-  
+@media screen and (max-width:850px) {
+  .search-items{
+    grid-template-columns: auto auto;
+  }
   
 }
 

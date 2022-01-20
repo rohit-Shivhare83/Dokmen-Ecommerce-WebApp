@@ -65,14 +65,17 @@ export default function Checkout() {
         // alert(response.razorpay_payment_id);
         // alert(response.razorpay_order_id);
         // alert(response.razorpay_signature);
-        alert(verification.staus);
+        alert(verification.status);
         // alert(verification.staus1);
-        swal({
-          title: "Payment SuccessFull",
-          text: `Your Order_Id is "${response.razorpay_order_id}"
-                Your PAyment_Id is "${response.razorpay_payment_id}" `,
-          icon: "success",
-        });
+
+        if (verification.status == "ok") {
+          swal({
+            title: "Payment SuccessFull",
+            text: `Your Order_Id is "${response.razorpay_order_id}"
+            Your PAyment_Id is "${response.razorpay_payment_id}" `,
+            icon: "success",
+          });
+        }
         // window.location = `https://api.whatsapp.com/send?phone=+917972328523&text=
         //   +Name :  +${formValues.firstName + formValues.lastName} +%0a
         //   +Address :  +${formValues.address} +%0a
@@ -90,8 +93,23 @@ export default function Checkout() {
         contact: formValues.phoneNo,
       },
     };
-
     const paymentObject = new window.Razorpay(options);
+    paymentObject.on("payment.failed", function (response) {
+      // alert(response.error.code);
+      // alert(response.error.description);
+      // alert(response.error.source);
+      // alert(response.error.step);
+      // alert(response.error.reason);
+      // alert(response.error.metadata.order_id);
+      // alert(response.error.metadata.payment_id);
+      swal({
+        title: "Payment Failed",
+        text: `${response.error.code}
+               Please Try Again `,
+        icon: "error",
+      });
+    });
+
     paymentObject.open();
   }
 

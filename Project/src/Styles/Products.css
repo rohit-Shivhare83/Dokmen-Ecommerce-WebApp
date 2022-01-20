@@ -74,8 +74,6 @@
 .filter.body .filter-items label {
   position: relative;
   left: 10px;
-  width: 80%;
-
 }
 
 .filter.body .filter-items input {
@@ -93,22 +91,22 @@
   display: grid;
   grid-template-columns: auto auto auto;
   overflow: scroll;
-  padding: 20px;
-  gap: 20px;
+  padding: 10px;
+  gap: 10px;
 }
 
 .filter-text {
   display: none;
   cursor: pointer;
 }
-.filter.body.mobile {
-  display: none;
+.filter.body.mobile{
+    display: none;
 }
 
-.checkbox {
+.checkbox{
   display: none;
 }
-.sort-desktop label {
+.sort-desktop label{
   cursor: pointer;
 }
 
@@ -119,27 +117,30 @@
 }
 
 @media screen and (max-width: 850px) {
-  .filter.body.desktop {
+  
+.filter.body.desktop{
     display: none;
-  }
-
-  .filter.body.mobile {
+}
+ 
+.filter.body.mobile{
     display: block;
     position: absolute !important;
     width: 30%;
-  }
+}
 
-  .filter.body.mobile .heading {
+.filter.body.mobile .heading{
     display: none;
-  }
-  .filter.body.mobile ul {
-    padding: 0;
-  }
+}
 
-  .filter.body.mobile li label {
-    width: 80%;
-  }
+.filter.body.mobile ul{
+  padding: 0;
+}
+
+.filter.body.mobile li label{
   
+  width: 80%;
+}
+
   .icon {
     display: none;
   }
@@ -195,6 +196,7 @@
     border-radius: 0 !important;
     padding: 10px 20px !important;
   }
+
   .sort-mobile ul li label{
     display: block;
   }
@@ -205,18 +207,19 @@
 }
 
 @media screen and (max-width: 700px) {
-  .filter.body.mobile {
-    width: 40% !important;
-  }
+   
+    .filter.body.mobile{
+        width: 40% !important;
+    }
 
-  .product-container {
-    gap: 10px;
-    padding: 10px;
-  }
+    .product-container{
+        gap: 10px;
+        padding: 10px;
+    }
 }
 
-@media screen and (max-width: 500px) {
-  .filter.body.mobile {
-    width: 50% !important;
-  }
+@media screen and (max-width:500px) {
+    .filter.body.mobile{
+        width: 50% !important;
+    }
 }

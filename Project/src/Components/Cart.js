@@ -98,7 +98,7 @@ export default function Cart(props) {
           total === 0?
           <button disabled='true' >CHECKOUT</button>:
           <Link to="/checkout"  >
-          <button onClick={()=>props.showCart = !props.showCart}>CHECKOUT</button>
+          <button onClick={()=>props.setshowCart(false)}>CHECKOUT</button>
           </Link>
         }
         

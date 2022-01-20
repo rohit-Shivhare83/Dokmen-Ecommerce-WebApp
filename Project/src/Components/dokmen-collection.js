@@ -10,14 +10,14 @@ export default function Dokmencollection() {
     state: { products },
   } = CartState();
 
-  // const random = products[Math.floor(Math.random() * products.length)];
-  // console.log(random);
+  const random = products[Math.floor(Math.random() * products.length)];
+  console.log(random);
 
   return (
     <div className="dokmen-collection">
       <h2 className="collection-txt">Dokmen Top selling</h2>
 
-      <div className="container">
+      <div className="product-container">
         {data.map((item) => {
           return (
             <ProductItems

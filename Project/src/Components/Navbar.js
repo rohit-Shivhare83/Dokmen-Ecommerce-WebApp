@@ -1,7 +1,6 @@
 import { React, useState } from "react";
 import "../Styles/Navbar.css";
 import "../Styles/Whatsapp.css";
-// import Products from "../Pages/Products";
 import { Link } from "react-router-dom";
 import { BsHandbag, BsSearch } from "react-icons/bs";
 import Cart from "./Cart";
@@ -27,26 +26,13 @@ export default function Navbar() {
     const toggle = document.getElementById("togglerTrigger");
     toggle.checked = false;
   }
-  // const {
-  //   state: { products },
-  //   productState: { category },
-  //   productDispatch,
-  // } = CartState();
 
   const {
     state: { cart, products },
-    // productState: { category },
     productDispatch,
   } = CartState();
 
-  const transformProducts = () => {
-    // let sortedProducts = products;
-    console.log(searchTerm);
-    // if(searchTerm){
-    //   sortedProducts= sortedProducts.filter((prod)=>prod.title.toLowercase().includes(searchTerm));
-    // }
-    // return sortedProducts;
-  };
+ 
 
   const getSearhTerm = (search) => {
     setSearchTerm(search.target.value);
@@ -57,10 +43,8 @@ export default function Navbar() {
           .toLowerCase()
           .includes(searchTerm);
       });
-      // console.log(sortedProducts);
       setSearchResults(sortedProducts);
-      console.log(searchResults);
-    }
+    } 
   };
 
   return (
@@ -101,21 +85,17 @@ export default function Navbar() {
                 <Link to="/">SHOP</Link>
                 <ul>
                   <li>
-                    <Link to="/products" onClick={closeMenu}>
+                    <Link to="#" onClick={closeMenu}>
                       ALL
                     </Link>
-                    
                   </li>
                   <li>
-                    <>
-                    
-                    <Link to="/products" onClick={closeMenu}>
+                    <Link to="#" onClick={closeMenu}>
                       MEN
                     </Link>
-                    </>
                   </li>
                   <li>
-                    <Link to="/products" onClick={closeMenu}>
+                    <Link to="#" onClick={closeMenu}>
                       WOMEN
                     </Link>
                   </li>
@@ -245,10 +225,12 @@ export default function Navbar() {
 
         <div
           className="search-container"
-          style={{ display: searchTerm ? "block" : "none" }}
+          style={{ display: searchTerm  ? "block" : "none" }}
         >
           <div className="search-items">
-            {searchResults.map((item) => {
+            {
+           
+            searchResults.map((item) => {
               return (
                 <ProductItems
                   key={item.title}
@@ -261,7 +243,10 @@ export default function Navbar() {
           </div>
         </div>
       </header>
-      <Cart showCart={showCart} />
+      
+
+        <Cart setshowCart={setshowCart} showCart={showCart}  />
+      
     </>
   );
 }
