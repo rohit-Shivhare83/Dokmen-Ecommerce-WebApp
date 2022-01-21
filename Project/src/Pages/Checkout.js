@@ -110,7 +110,7 @@ export default function Checkout() {
         });
 
         setInterval(() => {
-          window.location = `https:wa.me/+919867348169?text=
+          window.location = `https://api.whatsapp.com/send?phone=+919867348169&text=
           +Name :  +${formValues.firstName + formValues.lastName} +%0a
           Address :  +${formValues.address} +%0a
           +City :  +${formValues.city} +%0a
