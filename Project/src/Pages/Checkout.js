@@ -81,6 +81,7 @@ export default function Checkout() {
         // alert(verification.staus1);
         // const nvae = "request is legit"
         // console.log(verification);
+        console.log({orderDetails()});
         swal({
           title: "Payment SuccessFull",
           text: `Your Order_Id is "${response.razorpay_order_id}"
@@ -92,21 +93,21 @@ export default function Checkout() {
         
 
 
-        // setInterval(() => {
-        //   window.location = `https://api.whatsapp.com/send?phone=+917972328523&text=
-        //   +Name :  +${formValues.firstName + formValues.lastName} +%0a
-        //   +Address :  +${formValues.address} +%0a
-        //   +City :  +${formValues.city} +%0a
-        //   +State :  +${formValues.state} +%0a
-        //   +Phone No :  +${formValues.phoneNo} +%0a
-        //   +PinCode :  +${formValues.pincode} +%0a
-        //   +Payment Id :  +${response.razorpay_payment_id} +%0a
-        //   +Razorpay Payment Id :  +${response.razorpay_order_id} +%0a
-        //   +Order: +${orderDetails()} +%0a
-        //   +Total : +${total}
-        // `;
+        setInterval(() => {
+          window.location = `https://api.whatsapp.com/send?phone=+917972328523&text=
+          +Name :  +${formValues.firstName + formValues.lastName} +%0a
+          +Address :  +${formValues.address} +%0a
+          +City :  +${formValues.city} +%0a
+          +State :  +${formValues.state} +%0a
+          +Phone No :  +${formValues.phoneNo} +%0a
+          +PinCode :  +${formValues.pincode} +%0a
+          +Payment Id :  +${response.razorpay_payment_id} +%0a
+          +Razorpay Payment Id :  +${response.razorpay_order_id} +%0a
+          +Order: +${orderDetails()} +%0a
+          +Total : +${total}
+        `;
           
-        // }, 5000);
+        }, 5000);
         
       },
       prefill: {
