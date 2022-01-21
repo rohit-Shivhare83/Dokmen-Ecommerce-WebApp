@@ -22,21 +22,31 @@ export default function Checkout() {
     state: { cart },
   } = CartState();
 
-  const orderDetails=()=>{
-    cart.map((item)=>{
-      return {
-        "Product :" : item.title,
-        "Price : ":item.price,
-        "Quantity :" : item.qty,
-      }
-    })
-  }
-
   const [total, setTotal] = useState();
 
   useEffect(() => {
     setTotal(cart.reduce((acc, curr) => acc + curr.price * curr.qty, 0));
   }, [cart]);
+
+  const productDetails = {
+    product: "",
+    quantity: "",
+    price: "",
+    total: total,
+  };
+
+  const [productValues, setProductValues] = useState(productDetails);
+
+  const details = cart.map((item) => ({
+    title: item.title,
+    Quantity: item.qty,
+  }));
+  // console.log(JSON.stringify(Object.values(details)));
+  // console.log(JSON.stringify(details));
+
+  
+
+  // console.log(productValues);
 
   async function displayRazorPay() {
     const res = await loadScript(
@@ -51,7 +61,6 @@ export default function Checkout() {
       method: "POST",
     }).then((v) => v.json());
 
-    
     const data = await fetch("/razorpay", {
       method: "POST",
       mode: "same-origin",
@@ -62,7 +71,7 @@ export default function Checkout() {
       body: JSON.stringify({ post: total }),
     }).then((value) => value.json());
     console.log(data);
-    
+
     const options = {
       key: "rzp_test_VsCdgSHQjnyYP9",
       currency: data.currency,
@@ -71,7 +80,18 @@ export default function Checkout() {
       name: "Dokmen",
       description: "Thanks for shopping",
       image: "Images/Logo.png",
-      
+      notes: {
+        OrderDetails: JSON.stringify(details),
+        Name: formValues.firstName + formValues.lastName,
+        Address:
+          formValues.address +','+
+          formValues.city +','+
+          formValues.state +','+
+          formValues.pincode,
+        PhoneNo: formValues.phoneNo,
+        Total_Paid: total
+      },
+
       handler: function (response) {
         // alert(response.razorpay_payment_id);
         // alert(response.razorpay_order_id);
@@ -81,34 +101,29 @@ export default function Checkout() {
         // alert(verification.staus1);
         // const nvae = "request is legit"
         // console.log(verification);
-        console.log(orderDetails());
+        // console.log(orderDetails());
         swal({
           title: "Payment SuccessFull",
           text: `Your Order_Id is "${response.razorpay_order_id}"
           Your PAyment_Id is "${response.razorpay_payment_id}" `,
           icon: "success",
         });
-        
-        
-        
-
 
         setInterval(() => {
-          window.location = `https://api.whatsapp.com/send?phone=+917972328523&text=
+          window.location = `https:wa.me/+919867348169?text=
           +Name :  +${formValues.firstName + formValues.lastName} +%0a
-          +Address :  +${formValues.address} +%0a
+          Address :  +${formValues.address} +%0a
           +City :  +${formValues.city} +%0a
           +State :  +${formValues.state} +%0a
           +Phone No :  +${formValues.phoneNo} +%0a
           +PinCode :  +${formValues.pincode} +%0a
           +Payment Id :  +${response.razorpay_payment_id} +%0a
-          +Razorpay Payment Id :  +${response.razorpay_order_id} +%0a
-          +Order: +${orderDetails()} +%0a
-          +Total : +${total}
+          +Razorpay Payment Id : +%0a +${response.razorpay_order_id} +%0a
+          +Order: +%0a +${JSON.stringify( details)} +%0a
+          +Total : +${total} +%0a
         `;
-          
+
         }, 5000);
-        
       },
       prefill: {
         name: formValues.firstName,
@@ -161,11 +176,12 @@ export default function Checkout() {
     setformError(validate(formValues));
     setisSubmit(true);
   };
+
   useEffect(() => {
     if (Object.keys(formError).length === 0 && isSubmit) {
       displayRazorPay();
     }
-  }, [formError]);
+  },[formError]);
 
   const validate = (values) => {
     const errors = {};
@@ -194,9 +210,7 @@ export default function Checkout() {
 
     return errors;
   };
-
-  // const errorJson = JSON.stringify(formError)
-  // console.log(errorJson);
+  console.log(formError);
 
   return (
     <section>
@@ -221,32 +235,31 @@ export default function Checkout() {
               aria-labelledby="flush-headingOne"
               data-bs-parent="#accordionFlushExample"
             >
-              
               <div className="accordion-body">
                 {cart.map((item) => (
                   <>
                     <div className="product-details" key={item.id}>
                       <div>
-
-                        <span style={{position:"relative"}}>
-
-                        <img
-                          src={item.imgUrl}
-                          alt=""
-                          height="80px"
-                          width="80px"
+                        <span style={{ position: "relative" }}>
+                          <img
+                            src={item.imgUrl}
+                            alt=""
+                            height="80px"
+                            width="80px"
                           />
                           <span
-                    className="position-absolute top-0 start-100 translate-middle badge rounded-pill"
-                    style={{ backgroundColor: "black" }}
-                  >
-                    {item.qty}
-                  </span>
+                            className="position-absolute top-0 start-100 translate-middle badge rounded-pill"
+                            style={{ backgroundColor: "black" }}
+                          >
+                            {item.qty}
                           </span>
+                        </span>
                         {item.title}
                       </div>
 
-                      <div className="item-price">Rs {item.price*item.qty}</div>
+                      <div className="item-price">
+                        Rs {item.price * item.qty}
+                      </div>
                     </div>
                   </>
                 ))}
@@ -390,11 +403,9 @@ export default function Checkout() {
         <div className="price-details">
           <div className="price-title">
             <p>Total</p>
-            
           </div>
           <div className="price">
             <p>{total}</p>
-            
           </div>
         </div>
       </div>

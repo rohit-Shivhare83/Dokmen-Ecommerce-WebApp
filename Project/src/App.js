@@ -13,9 +13,27 @@ import Checkout from "./Pages/Checkout";
 import Policy from "./Pages/privacyPolicy";
 import ReturnPolicy from "./Pages/ReturnPolicy";
 import TermsnCondition from "./Pages/TermsnCondition";
-import { useState } from "react";
+import swal from "sweetalert";
+import { CartState } from "./Context/Context";
+import { useEffect } from "react";
+
 
 function App() {
+  const {
+    state:
+    { cart, }
+    
+  }= CartState();
+
+  useEffect(() => {
+    cart.length===6 && swal({
+      title:"Prodct Limit Reached",
+      text:"Cart Item cannot exceed 6",
+    icon:"warning"})
+  
+    
+  }, [cart]);
+  
 
   return (
     <>
@@ -34,7 +52,7 @@ function App() {
         <Route path="/terms&condition" element={<TermsnCondition/>}></Route>
 
       </Routes>
-
+      
       <ScrollButton></ScrollButton>
       <WhatsappFloat></WhatsappFloat>
       <Footer></Footer>

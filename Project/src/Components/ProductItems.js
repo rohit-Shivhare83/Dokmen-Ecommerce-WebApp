@@ -2,6 +2,7 @@ import React from "react";
 import { CartState } from "../Context/Context";
 import "../Styles/ProductItems.css";
 
+
 export default function ProductItems(props) {
 
   const {
@@ -41,13 +42,20 @@ export default function ProductItems(props) {
                 type:'ADD_TO_CART',
                 payload:props
               })
-            }} >
+            }}
+            disabled={cart.length === 6}
+            style={{backgroundColor:cart.length === 6?"red":"grey"}}
+            
+
+            >
             ADD TO CART
           </button>
           )
         }
          
         </div>
+
+        
     </div>
   );
 }

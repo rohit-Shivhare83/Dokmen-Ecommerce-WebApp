@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import {AiOutlineArrowUp} from 'react-icons/ai'
 
 const ScrollButton = () =>{
 
@@ -28,7 +29,7 @@ return (
 	
 
     <button id='topBtn' style={{display:visible?'inline':'none'}} onClick={scrollToTop}>
-<i className="fas fa-arrow-up"></i>
+<AiOutlineArrowUp style={{fontSize:"20px"}}/>
     </button>
 );
 }
