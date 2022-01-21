@@ -12,11 +12,11 @@ const bodyParser = require("body-parser");
 app.use(bodyParser.json())
 app.use(cors());
 app.use(json())
-// app.use(express.static(path.join(__dirname,"../Project/build")));
+app.use(express.static(path.join(__dirname,"../Project/build")));
 
-// app.get("*", (req, res) => {
-//   res.sendFile(path.resolve(__dirname, "../Project/build", "index.html"));
-// });
+app.get("*", (req, res) => {
+  res.sendFile(path.resolve(__dirname, "../Project/build", "index.html"));
+});
 
 
 const razorpay = new Razorpay({
