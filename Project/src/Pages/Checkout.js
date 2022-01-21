@@ -80,17 +80,17 @@ export default function Checkout() {
         // console.log(verification.past1);
         // alert(verification.staus1);
         // const nvae = "request is legit"
-        console.log(verification);
+        // console.log(verification);
+        swal({
+          title: "Payment SuccessFull",
+          text: `Your Order_Id is "${response.razorpay_order_id}"
+          Your PAyment_Id is "${response.razorpay_payment_id}" `,
+          icon: "success",
+        });
         
         
-        if (verification.post1 === true ) {
-          swal({
-            title: "Payment SuccessFull",
-            text: `Your Order_Id is "${response.razorpay_order_id}"
-            Your PAyment_Id is "${response.razorpay_payment_id}" `,
-            icon: "success",
-          });
-        }
+        
+
 
         // setInterval(() => {
         //   window.location = `https://api.whatsapp.com/send?phone=+917972328523&text=

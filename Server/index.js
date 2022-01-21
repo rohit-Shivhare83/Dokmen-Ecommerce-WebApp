@@ -27,7 +27,7 @@ const razorpay = new Razorpay({
 app.post('/verification', (req, res) => {
 	// do a validation
 	const secret = '1234567890'
-  var oderid = null ;
+  // var oderid = null ;
 
 	console.log(req.body)
 
@@ -48,13 +48,13 @@ app.post('/verification', (req, res) => {
     console.log(req.body.payload.payment.entity.order_id);
 		// process it
 	  // oderid = req.body.payload.payment.entity.order_id;
-    oderid = true;
+    // oderid = true;
 	} 
   else {
     // pass it
 	}
   res.json({ 
-    post1: oderid,
+    // post1: oderid,
     status: 'ok',
 
  });
