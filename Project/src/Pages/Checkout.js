@@ -81,7 +81,7 @@ export default function Checkout() {
         // alert(verification.staus1);
         // const nvae = "request is legit"
         // console.log(verification);
-        console.log({orderDetails()});
+        console.log(orderDetails());
         swal({
           title: "Payment SuccessFull",
           text: `Your Order_Id is "${response.razorpay_order_id}"
