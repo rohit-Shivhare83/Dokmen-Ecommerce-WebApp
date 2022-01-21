@@ -51,6 +51,7 @@ export default function Checkout() {
       method: "POST",
     }).then((v) => v.json());
 
+    
     const data = await fetch("/razorpay", {
       method: "POST",
       mode: "same-origin",
@@ -61,7 +62,7 @@ export default function Checkout() {
       body: JSON.stringify({ post: total }),
     }).then((value) => value.json());
     console.log(data);
-
+    
     const options = {
       key: "rzp_test_VsCdgSHQjnyYP9",
       currency: data.currency,
@@ -70,15 +71,19 @@ export default function Checkout() {
       name: "Dokmen",
       description: "Thanks for shopping",
       image: "Images/Logo.png",
-
+      
       handler: function (response) {
         // alert(response.razorpay_payment_id);
         // alert(response.razorpay_order_id);
         // alert(response.razorpay_signature);
-        alert(verification.status);
+        // console.log(verification.post1);
+        // console.log(verification.past1);
         // alert(verification.staus1);
-
-        if (verification.status === 'ok') {
+        // const nvae = "request is legit"
+        console.log(verification);
+        
+        
+        if (verification.post1 === true ) {
           swal({
             title: "Payment SuccessFull",
             text: `Your Order_Id is "${response.razorpay_order_id}"
@@ -86,23 +91,22 @@ export default function Checkout() {
             icon: "success",
           });
         }
-        console.log(verification.status);
 
-        setInterval(() => {
-          window.location = `https://api.whatsapp.com/send?phone=+917972328523&text=
-          +Name :  +${formValues.firstName + formValues.lastName} +%0a
-          +Address :  +${formValues.address} +%0a
-          +City :  +${formValues.city} +%0a
-          +State :  +${formValues.state} +%0a
-          +Phone No :  +${formValues.phoneNo} +%0a
-          +PinCode :  +${formValues.pincode} +%0a
-          +Payment Id :  +${response.razorpay_payment_id} +%0a
-          +Razorpay Payment Id :  +${response.razorpay_order_id} +%0a
-          +Order: +${orderDetails()} +%0a
-          +Total : +${total}
-        `;
+        // setInterval(() => {
+        //   window.location = `https://api.whatsapp.com/send?phone=+917972328523&text=
+        //   +Name :  +${formValues.firstName + formValues.lastName} +%0a
+        //   +Address :  +${formValues.address} +%0a
+        //   +City :  +${formValues.city} +%0a
+        //   +State :  +${formValues.state} +%0a
+        //   +Phone No :  +${formValues.phoneNo} +%0a
+        //   +PinCode :  +${formValues.pincode} +%0a
+        //   +Payment Id :  +${response.razorpay_payment_id} +%0a
+        //   +Razorpay Payment Id :  +${response.razorpay_order_id} +%0a
+        //   +Order: +${orderDetails()} +%0a
+        //   +Total : +${total}
+        // `;
           
-        }, 5000);
+        // }, 5000);
         
       },
       prefill: {

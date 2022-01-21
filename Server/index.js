@@ -12,11 +12,11 @@ const bodyParser = require("body-parser");
 app.use(bodyParser.json())
 app.use(cors());
 app.use(json())
-app.use(express.static(path.join(__dirname,"../Project/build")));
+// app.use(express.static(path.join(__dirname,"../Project/build")));
 
-app.get("*", (req, res) => {
-  res.sendFile(path.resolve(__dirname, "../Project/build", "index.html"));
-});
+// app.get("*", (req, res) => {
+//   res.sendFile(path.resolve(__dirname, "../Project/build", "index.html"));
+// });
 
 
 const razorpay = new Razorpay({
@@ -24,28 +24,41 @@ const razorpay = new Razorpay({
   key_secret: "MJAKG3pH8qx5OQ8KzIVdvTkQ",
 });
 
-app.post("/verification", (req, res) => {
-  
-  const secret = '1234567890'
+app.post('/verification', (req, res) => {
+	// do a validation
+	const secret = '1234567890'
+  var oderid = null ;
 
-  console.log(req.body);
+	console.log(req.body)
 
-  const shasum = crypto.createHmac('sha256', secret)
+	const crypto = require('crypto')
+
+	const shasum = crypto.createHmac('sha256', secret)
 	shasum.update(JSON.stringify(req.body))
 	const digest = shasum.digest('hex')
 
 	console.log(digest, req.headers['x-razorpay-signature'])
 
 	if (digest === req.headers['x-razorpay-signature']) {
+    
 		console.log('request is legit')
+    // console.log(JSON.stringify(req.body, null, 4));
+    console.log(req.body.payload.payment.entity.id);
+    console.log(req.body.payload.payment.entity.description);
+    console.log(req.body.payload.payment.entity.order_id);
 		// process it
-		res.json({ status : 'ok'});
-	} else {
-		// pass it
-    res.json({ status1 : 'failed'})
+	  // oderid = req.body.payload.payment.entity.order_id;
+    oderid = true;
+	} 
+  else {
+    // pass it
 	}
-  
-});
+  res.json({ 
+    post1: oderid,
+    status: 'ok',
+
+ });
+})
 
 app.post("/razorpay", async (req, res) => {
   const product = req.body.post;
