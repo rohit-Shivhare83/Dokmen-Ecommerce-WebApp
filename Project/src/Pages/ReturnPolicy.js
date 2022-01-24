@@ -14,7 +14,7 @@ export default function ReturnPolicy() {
             eligible for a return, your product must be unused and in the same
             condition that you received it. It must also be in the original
             packaging. The Product will be subject to a thorough quality check
-            in order to be eligible for a return. SockSoho reserves the right to
+            in order to be eligible for a return. Dokmen reserves the right to
             refuse to return a product if it is not in its original condition,
             is damaged or missing parts for reasons not due to our error.
             <h6>

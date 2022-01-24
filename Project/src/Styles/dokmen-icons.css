@@ -8,23 +8,46 @@
   
   .dokmen-icons-1{
     text-align: center;
-    margin: 10px 5%;
+    /* margin: 10px 5%; */
     background-color: whitesmoke;
     padding: 10px 0;
-    box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;          }
+    box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;    
+    height: 50vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+  }
   
   .dokmen-icons-2{
     text-align: center;
     background-color: #E6E6E6;
-    margin: 20px 5%;
+    /* margin: 20px 5%; */
     padding: 10px 0;
+    height: 50vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    
   }
   .dokmen-icons-3{
     text-align: center;
     background-color: whitesmoke;
-    margin: 10px 5%;
+    /* margin: 10px 5%; */
     padding: 10px 0;
-    box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;   }
+    height: 50vh;
+    box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;  
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+  }
+
+    .fIcon{
+      font-size: 64px;
+    }
+
+    .icons img{
+      height: 64px !important;
+    }
 
   @media screen and (max-width:600px) {
     .icons img{
@@ -41,38 +64,72 @@
      
    }
    
-   @media screen and (max-width: 450px) {
-     .dokmen-icons-1 h3{
+   @media screen and (max-width: 500px) {
+
+    .dokmen-icons{
+      display: grid;
+      grid-template-columns: 40% 40%;
+      gap: 20px;
+    }
+
+    .dokmen-icons.three{
+      padding: 50px auto;
+      display: flex;
+      flex-direction: column;
+    }
+     /* .dokmen-icons-1 h3{
        font-size: 16px !important;
-       /* margin: 10px 5%; */
-     }
+       margin: 10px 5%;
+     } */
      .dokmen-icons-1{
-      margin: 10px 1%;
-    }
-     .dokmen-icons-2 h3{
-       font-size: 16px !important;
-       /* margin: 10px 5%; */
-     }
-     .dokmen-icons-2{
-      margin: 10px 1%;
-    }
-   .dokmen-icons-3 h3{
-     font-size: 16px !important;
-     /* margin: 10px 5%; */
-   }
-   .dokmen-icons-3{
-    margin: 10px 1%;
-  }
-     .icons img{
-       height: 24px;
-     }
+      margin: 10px 0;
       
-     .icons h6{
+    }
+
+
+     /* .dokmen-icons-2 h3{
+       font-size: 16px !important;
+       margin: 10px 5%;
+     } */
+     .dokmen-icons-2{
+      margin: 10px 0;
+      height: 60vh;
+
+    }
+   /* .dokmen-icons-3 h3{
+     font-size: 16px !important;
+     margin: 10px 5%;
+   } */
+   .dokmen-icons-3{
+    margin: 10px 0;
+    height: 100vh;
+
+  }
+    
+      
+     /* .icons h6{
        font-size: 10px !important;
        padding-top: 6px;
-     }
+     } */
     
-     .icons p{
+     /* .icons p{
        font-size: 8px;
+     } */
+
+     .fIcon{
+       font-size: 40px;
      }
+
+     .icons img{
+       height: 40px !important;
+     }
+
+    
+
+     .dokmen-icons-2 p{
+       font-size: 14px;
+       padding: 0 10px;
+     }
+
+    
    }

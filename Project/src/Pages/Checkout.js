@@ -23,10 +23,15 @@ export default function Checkout() {
   } = CartState();
 
   const [total, setTotal] = useState();
+  const [finalTotal,setFinalTotal] = useState();
 
   useEffect(() => {
     setTotal(cart.reduce((acc, curr) => acc + curr.price * curr.qty, 0));
   }, [cart]);
+
+  useEffect(()=>{
+      total<500?setFinalTotal(total+100):setFinalTotal(total);
+  })
 
   const productDetails = {
     product: "",
@@ -68,7 +73,7 @@ export default function Checkout() {
         Accept: "application/json",
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ post: total }),
+      body: JSON.stringify({ post: finalTotal }),
     }).then((value) => value.json());
     console.log(data);
 
@@ -226,7 +231,7 @@ export default function Checkout() {
                 aria-expanded="false"
                 aria-controls="flush-collapseOne"
               >
-                Order Summary : <b>Rs.{total}</b>
+                Order Summary : <b>₹ {total}</b>
               </button>
             </p>
             <div
@@ -258,7 +263,7 @@ export default function Checkout() {
                       </div>
 
                       <div className="item-price">
-                        Rs {item.price * item.qty}
+                      ₹ {item.price * item.qty}
                       </div>
                     </div>
                   </>
@@ -395,17 +400,23 @@ export default function Checkout() {
                 {item.title}
               </div>
 
-              <div className="item-price">Rs {item.price * item.qty}</div>
+              <div className="item-price">₹ {item.price * item.qty}</div>
             </div>
           </>
         ))}
 
         <div className="price-details">
           <div className="price-title">
+            <p>SubTotal</p>
+            <p>Shipping</p>
+            <br /><br />
             <p>Total</p>
           </div>
           <div className="price">
-            <p>{total}</p>
+            <p>₹ {total}</p>
+            <p> {total<500 ? "₹ 100":"Free"}</p>
+            <br /><br />
+            <p>{finalTotal}</p>
           </div>
         </div>
       </div>

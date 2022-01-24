@@ -1,4 +1,4 @@
-import { React, useState } from "react";
+import { React, useState, useEffect, useRef } from "react";
 import "../Styles/Navbar.css";
 import "../Styles/Whatsapp.css";
 import { Link } from "react-router-dom";
@@ -8,6 +8,29 @@ import { CartState } from "../Context/Context";
 
 import { BiMenu } from "react-icons/bi";
 import ProductItems from "./ProductItems";
+import { MdClear } from "react-icons/md";
+
+var x = window.matchMedia('(max-width:1200px)')
+
+let useClickOutside = (handler) => {
+  let domNode = useRef();
+
+  useEffect(() => {
+    let maybeHandler = (event) => {
+      if (!domNode.current.contains(event.target)) {
+        handler();
+      }
+    };
+
+    document.addEventListener("mousedown", maybeHandler);
+
+    return () => {
+      document.removeEventListener("mousedown", maybeHandler);
+    };
+  });
+
+  return domNode;
+};
 
 export default function Navbar() {
   const [showSearch, setshowSearch] = useState(false);
@@ -22,17 +45,12 @@ export default function Navbar() {
   const [searchTerm, setSearchTerm] = useState("");
   const [searchResults, setSearchResults] = useState([]);
 
-  function closeMenu() {
-    const toggle = document.getElementById("togglerTrigger");
-    toggle.checked = false;
-  }
+  const [showMenu, setShowMenu] = useState(false);
 
   const {
     state: { cart, products },
     productDispatch,
   } = CartState();
-
- 
 
   const getSearhTerm = (search) => {
     setSearchTerm(search.target.value);
@@ -44,11 +62,18 @@ export default function Navbar() {
           .includes(searchTerm.toLowerCase());
       });
       setSearchResults(sortedProducts);
-    } 
+    }
   };
 
+  let domNode = useClickOutside(() => {
+    setShowMenu(false);
+    // console.log(showMenu);
+  });
+
+  console.log(x.matches);
+
   return (
-    <>
+    <div>
       <header>
         <div className="whatsapp-container">
           <a
@@ -68,63 +93,81 @@ export default function Navbar() {
 
         <div className="navbar">
           <label className="toggle-btn" htmlFor="togglerTrigger">
-            <BiMenu id="toggler"></BiMenu>
+            <BiMenu
+              id="toggler"
+              onClick={() => {
+                setShowMenu(!showMenu);
+              }}
+            ></BiMenu>
           </label>
-          <input type="checkbox" name="" id="togglerTrigger" />
-          <div className="nav-menu left">
+
+          <div
+            className="nav-menu left"
+            style={{transform: x.matches ? showMenu?"translateX(0)":"translateX(-100%)":null}}
+            id="navMenuLeft"
+            ref={domNode}
+          >
+            <div className="closeMenu">
+              <MdClear
+                onClick={() => setShowMenu(!showMenu)}
+                style={{ cursor: "pointer" }}
+              />
+            </div>
             <ul>
               <li>
-                <button className="login-btn menu">Log In</button>
-              </li>
-              <li>
-                <Link to="/" onClick={closeMenu}>
-                  HOME
-                </Link>
-              </li>
-              <li>
-                <a  >SHOP</a>
+                <Link to="/">SHOP</Link>
                 <ul>
                   <li>
-                    <Link to="/products" onClick={()=>{closeMenu();
-                    productDispatch({
-                      type: "FILTER_BY_CATEGORY",
-                      payload: "all",
-                    })}}>
+                    <Link
+                      to="/products"
+                      onClick={() => {
+                        setShowMenu(!showMenu);
+                        productDispatch({
+                          type: "FILTER_BY_CATEGORY",
+                          payload: "all",
+                        });
+                      }}
+                    >
                       ALL
                     </Link>
                   </li>
                   <li>
-                    <Link to="/products"  onClick={()=>{
-                      
-                      closeMenu();
-                      productDispatch({
-                        type: "FILTER_BY_CATEGORY",
-                        payload: "men",
-                      })
-                    }
-                      }>
+                    <Link
+                      to="/products"
+                      onClick={() => {
+                        setShowMenu(!showMenu);
+                        productDispatch({
+                          type: "FILTER_BY_CATEGORY",
+                          payload: "men",
+                        });
+                      }}
+                    >
                       MEN
                     </Link>
                   </li>
                   <li>
-                    <Link to="/products"  onClick={()=>{closeMenu();
-                    productDispatch({
-                      type: "FILTER_BY_CATEGORY",
-                      payload: "women",
-                    })
-                    }}>
+                    <Link
+                      to="/products"
+                      onClick={() => {
+                        setShowMenu(!showMenu);
+                        productDispatch({
+                          type: "FILTER_BY_CATEGORY",
+                          payload: "women",
+                        });
+                      }}
+                    >
                       WOMEN
                     </Link>
                   </li>
                 </ul>
               </li>
               <li>
-                <Link to="#" onClick={closeMenu}>
+                <Link to="#" onClick={() => setShowMenu(!showMenu)}>
                   COMBOS
                 </Link>
               </li>
               <li>
-                <Link to="#" onClick={closeMenu}>
+                <Link to="#" onClick={() => setShowMenu(!showMenu)}>
                   SALE
                 </Link>
               </li>
@@ -132,27 +175,27 @@ export default function Navbar() {
                 <Link to="#">THE BRAND</Link>
                 <ul>
                   <li>
-                    <Link to="/journey" onClick={closeMenu}>
+                    <Link to="/journey" onClick={() => setShowMenu(!showMenu)}>
                       JOURNEY
                     </Link>
                   </li>
                   <li>
-                    <Link to="#" onClick={closeMenu}>
+                    <Link to="#" onClick={() => setShowMenu(!showMenu)}>
                       WHY DOKMEN
                     </Link>
                   </li>
                   <li>
-                    <Link to="#" onClick={closeMenu}>
+                    <Link to="#" onClick={() => setShowMenu(!showMenu)}>
                       BLOG
                     </Link>
                   </li>
                   <li>
-                    <Link to="#" onClick={closeMenu}>
+                    <Link to="#" onClick={() => setShowMenu(!showMenu)}>
                       BECOME AN AFFILIATE
                     </Link>
                   </li>
                   <li>
-                    <Link to="#" onClick={closeMenu}>
+                    <Link to="#" onClick={() => setShowMenu(!showMenu)}>
                       CORPORATE GIFTING
                     </Link>
                   </li>
@@ -162,38 +205,43 @@ export default function Navbar() {
                 <Link to="#">HELP</Link>
                 <ul>
                   <li>
-                    <Link to="#" onClick={closeMenu}>
+                    <Link to="#" onClick={() => setShowMenu(!showMenu)}>
                       RETURNS / EXCHANGE
                     </Link>
                   </li>
                   <li>
-                    <Link to="#" onClick={closeMenu}>
+                    <Link to="#" onClick={() => setShowMenu(!showMenu)}>
                       TRACK YOUR ORDER
                     </Link>
                   </li>
                   <li>
-                    <Link to="#" onClick={closeMenu}>
+                    <Link to="#" onClick={() => setShowMenu(!showMenu)}>
                       RETURN POLICY
                     </Link>
                   </li>
                   <li>
-                    <Link to="#" onClick={closeMenu}>
+                    <Link to="#" onClick={() => setShowMenu(!showMenu)}>
                       CARE YOUR PPRODUCT
                     </Link>
                   </li>
                   <li>
-                    <Link to="#" onClick={closeMenu}>
+                    <Link to="#" onClick={() => setShowMenu(!showMenu)}>
                       #ASK DOKMEN
                     </Link>
                   </li>
                 </ul>
               </li>
+              <li>
+                <button className="login-btn menu">Log In</button>
+              </li>
             </ul>
           </div>
 
           <div className="logo">
+            <Link to="/">
             <img src="Images/Logo.png" alt="logo" />
-            <br />A BRAND BY <span>EMPIRE</span> FOOTWEAR
+            <br /><span className="logo-text"> A BRAND BY <span className="empire-text">EMPIRE</span> FOOTWEAR</span> 
+            </Link>
           </div>
 
           <button className="login-btn">Log In</button>
@@ -242,12 +290,10 @@ export default function Navbar() {
 
         <div
           className="search-container"
-          style={{ display: searchTerm  ? "block" : "none" }}
+          style={{ display: searchTerm ? "block" : "none" }}
         >
           <div className="search-items">
-            {
-           
-            searchResults.map((item) => {
+            {searchResults.map((item) => {
               return (
                 <ProductItems
                   key={item.title}
@@ -260,10 +306,8 @@ export default function Navbar() {
           </div>
         </div>
       </header>
-      
 
-        <Cart setshowCart={setshowCart} showCart={showCart}  />
-      
-    </>
+      <Cart setshowCart={setshowCart} showCart={showCart} />
+    </div>
   );
 }

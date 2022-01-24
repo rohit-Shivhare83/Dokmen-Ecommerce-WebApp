@@ -18,6 +18,11 @@ import { CartState } from "./Context/Context";
 import { useEffect } from "react";
 
 
+
+
+
+
+
 function App() {
   const {
     state:
@@ -33,14 +38,18 @@ function App() {
   
     
   }, [cart]);
+
+  
   
 
   return (
     <>
+    
     <Router>
       <ScrollToTop />
       <Navbar />
       <div style={{ height: "108px" }}></div>
+      
       <Routes>
         <Route path="" element={<Home />}></Route>
         <Route path="/journey" element={<TheJourney />}></Route>

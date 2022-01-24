@@ -2,31 +2,39 @@
   position: fixed;
   /* height: 100%; */
   background-color: whitesmoke;
-  
-  top: 108px;
-  right: 0; 
+
+  top: 0;
+  right: 0;
   bottom: 0;
   z-index: 10;
-  width: 25%;
+  width: 35%;
   padding: 10px;
   transition: all 0.3s ease-in-out;
   box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
   transform: translateX(0);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.cart-header .cart-title {
+  position: sticky;
+  top: 0;
+  background-color: whitesmoke;
+  margin-bottom: 10px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  
+}
+
+.cart-header {
+  overflow-y: scroll !important;
+  margin: 10px 0;
 }
 
 
-.checkout-btn{
-height: 10%;
-
-}
-.cart-title h3{
-  margin: 0;
-}
-.cart-body{
-    height: 80%;
-    overflow-y: scroll;
-    margin: 10px 0;
-}
 
 .cart-item {
   display: flex;
@@ -34,10 +42,11 @@ height: 10%;
   border-radius: 10px;
   padding: 10px;
   margin: 10px 0;
-  box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px,
+    rgba(0, 0, 0, 0.1) 0px 0px 1px 0px;
 }
-.cart-item-details{
-  padding-left:8px;
+.cart-item-details {
+  padding-left: 8px;
 }
 
 .cart-item img {
@@ -45,64 +54,58 @@ height: 10%;
   width: 50%;
 }
 
-
-
-.checkout-btn button{
-    width: 100%;
-    border: none;
-    height: 44px;
-  background-color: #032044;   
-border-radius: 6px;
+.checkout-btn button {
+  width: 100%;
+  border: none;
+  height: 44px;
+  background-color: #032044;
+  border-radius: 6px;
   color: white;
-  
 }
 
-.item-btn{
+.item-btn {
   display: flex;
   justify-content: space-between;
 }
-.icon-btn{
+.icon-btn {
   margin: 0 6px;
   cursor: pointer;
 }
-.delete-btn{
+.delete-btn {
   cursor: pointer;
 }
-.qty-title{
+.qty-title {
   color: gray;
   font-size: 14px;
 }
-.cart .total-price{
+.cart .total-price {
   font-weight: bold;
   font-size: 20px;
 }
 
-
-@media screen and (max-width:1000px) {
-  .cart{
+@media screen and (max-width: 1000px) {
+  .cart {
     width: 40%;
   }
-  
 }
 
-@media screen and (max-width:700px) {
-  .cart{
+@media screen and (max-width: 700px) {
+  .cart {
     width: 50%;
   }
-  
 }
 
-@media screen and (max-width:500px) {
-  .cart{
+@media screen and (max-width: 500px) {
+  .cart {
     width: 70%;
   }
-  .cart-item-details{
+  .cart-item-details {
     font-size: 14px;
   }
 }
 
-@media screen and (max-width:350px) {
-  .cart{
+@media screen and (max-width: 350px) {
+  .cart {
     width: 80%;
   }
 }
